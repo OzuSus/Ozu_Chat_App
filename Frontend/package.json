@@ -10,8 +10,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@hookform/resolvers": "^5.4.0",
+    "@mui/material": "^9.1.2",
+    "@stomp/stompjs": "^7.3.0",
+    "@tanstack/react-query": "^5.101.1",
+    "@tanstack/react-router": "^1.170.16",
+    "axios": "^1.18.1",
+    "dayjs": "^1.11.21",
+    "emoji-picker-react": "^4.19.1",
+    "framer-motion": "^12.42.0",
+    "i18next": "^26.3.2",
+    "lucide-react": "^1.21.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-dropzone": "^15.0.0",
+    "react-hook-form": "^7.80.0",
+    "react-i18next": "^17.0.8",
+    "react-virtuoso": "^4.18.8",
+    "socket.io-client": "^4.8.3",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
