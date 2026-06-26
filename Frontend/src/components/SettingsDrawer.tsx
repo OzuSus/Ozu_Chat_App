@@ -164,7 +164,7 @@ interface ColorFieldProps {
 
 const ColorField = ({ label, value, onChange }: ColorFieldProps) => (
   <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-    <input className="color-input" type="color" value={value} onChange={(event) => onChange(event.target.value)} aria-label={label} />
+    <input className="color-input" type="color" value={value} onChange={(event) => onChange(event.target.value)} aria-label={`${label} picker`} />
     <TextField value={value} onChange={(event) => onChange(event.target.value)} label={label} fullWidth />
   </Stack>
 )

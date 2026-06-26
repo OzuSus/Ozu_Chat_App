@@ -4,13 +4,15 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
 import { useMemo } from 'react'
 
-import { AuthScreen } from './components/AuthScreen'
 import { ConversationSidebar } from './components/ConversationSidebar'
 import { MessagePanel } from './components/MessagePanel'
 import { NewConversationDialog } from './components/NewConversationDialog'
 import { SettingsDrawer } from './components/SettingsDrawer'
 import { useConversations } from './hooks/useChatQueries'
 import { useRealtime } from './hooks/useRealtime'
+import { SignInPage } from './pages/signIn'
+import { SignUpPage } from './pages/signUp'
+import { VerifyEmailPage } from './pages/verifyEmail'
 import { useAuthStore } from './stores/authStore'
 import { useUiStore } from './stores/uiStore'
 import type { ThemePreference } from './types/domain'
@@ -43,7 +45,7 @@ const AppProviders = () => {
 
 const HomeRoute = () => {
   const accessToken = useAuthStore((state) => state.accessToken)
-  return accessToken ? <ChatWorkspace /> : <AuthScreen />
+  return accessToken ? <ChatWorkspace /> : <SignInPage />
 }
 
 const ChatWorkspace = () => {
@@ -66,8 +68,6 @@ const ChatWorkspace = () => {
   )
 }
 
-const VerifyRoute = () => <AuthScreen />
-
 const rootRoute = createRootRoute({
   component: AppProviders,
 })
@@ -81,10 +81,25 @@ const indexRoute = createRoute({
 const verifyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/verify-email',
-  component: VerifyRoute,
+  validateSearch: (search: Record<string, unknown>) => ({
+    token: typeof search.token === 'string' ? search.token : undefined,
+  }),
+  component: VerifyEmailPage,
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, verifyRoute])
+const signInRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/sign-in',
+  component: SignInPage,
+})
+
+const signUpRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/sign-up',
+  component: SignUpPage,
+})
+
+const routeTree = rootRoute.addChildren([indexRoute, signInRoute, signUpRoute, verifyRoute])
 const router = createRouter({ routeTree })
 
 declare module '@tanstack/react-router' {
