@@ -14,5 +14,6 @@ public record AttachmentDto(
 		Integer width,
 		Integer height,
 		Long durationMs,
-		Instant createdAt) {
+		Instant createdAt
+) {
 }

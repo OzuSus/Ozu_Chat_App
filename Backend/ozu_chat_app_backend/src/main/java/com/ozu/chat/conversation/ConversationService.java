@@ -59,7 +59,7 @@ public class ConversationService {
 					ConversationType.PRIVATE,
 					new ArrayList<>(memberIds));
 			if (!existing.isEmpty()) {
-				return conversationMapper.toDto(existing.getFirst());
+				return conversationMapper.toDto(existing.get(0));
 			}
 		}
 

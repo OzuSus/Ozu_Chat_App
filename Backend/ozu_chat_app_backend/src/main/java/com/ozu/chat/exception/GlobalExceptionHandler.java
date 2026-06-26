@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
 				.collect(Collectors.groupingBy(FieldError::getField))
 				.entrySet()
 				.stream()
-				.map(entry -> entry.getKey() + ": " + entry.getValue().getFirst().getDefaultMessage())
+				.map(entry -> entry.getKey() + ": " + entry.getValue().get(0).getDefaultMessage())
 				.collect(Collectors.joining("; "));
 		return ResponseEntity.badRequest().body(ApiResponse.fail(message));
 	}
